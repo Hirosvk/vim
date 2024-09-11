@@ -11,6 +11,8 @@
   " Vim first reads vimrc files (check :version) and the scripts from paths set in 'runtimepath'
 
   set directory=~/.vim/swapfiles//
+  set backupcopy=yes
+  set re=0
 
 " Ctrl-p
   set wildignore=*/tmp/*
@@ -23,8 +25,9 @@
   "preview window shown in a vertically split window.
   let g:netrw_preview = 1
   let g:netrw_winsize = 80 "80%
+  let g:jsonnet_fmt_on_save=0
 
-  let NERDTreeCustomOpenArgs={'file':{'where': 't'}, 'dir': {}}
+  "let NERDTreeCustomOpenArgs={'file':{'where': 't'}, 'dir': {}}
 
   " vs dir view
   nmap <Space>d :30vs <C-R>=expand("%:p:h")<CR><CR>
@@ -124,7 +127,7 @@
 
   " JS (for some reason, ruby.vim is loaded for js file, overriding
   " js syntax)
-  autocmd BufEnter *.js,*.ts setlocal filetype=javascript
+  "autocmd BufEnter *.js,*.ts setlocal filetype=javascript
 
   autocmd BufEnter *.py setlocal filetype=python
 
@@ -137,7 +140,7 @@
   autocmd BufEnter Dockerfile* setlocal filetype=dockerfile
 
   autocmd BufEnter *.rb,*.rake,*.jbuilder,*yml,*yaml,*.py call SetCommentWithSharp()
-  autocmd BufEnter *.js,*.jsx,*.ts,*tsx,*.cpp,*.hpp,*.c,*.h call SetCommentWithBackSlash()
+  autocmd BufEnter *.js,*.jsx,*.ts,*tsx,*.cpp,*.hpp,*.c,*.h,*.go call SetCommentWithBackSlash()
 
   function! SetCommentWithSharp()
     vmap ,c :s/^\(\s*\)\(.\)/\1# \2/g <cr>
@@ -150,7 +153,7 @@
   endfunction
 
   " Format json files
-  nmap ,json :%!python -m json.tool<CR>:%s/    /  /g<CR>
+  nmap ,json :%!python3 -m json.tool<CR>:%s/    /  /g<CR>
   vmap ,json :'<,'>!python -m json.tool<CR>:%s/    /  /g<CR>
 
   nmap ,xml :call XmlPrettify()<CR>
@@ -204,29 +207,23 @@
   vmap <Space>v3 :'<,'>s/[0-9\.\-]\+, \?[0-9\.\-]\+, \?[0-9\.\-]\+, \+/&\r/g<CR>
 
 " Git
-  nmap <Space>gf :call OpenFileInGitLab()<CR>
+  nmap <Space>gf :call OpenFileInGitHub()<CR>
   nmap <Space>gc :call OpenCommitInGitHub()<CR>
 
   nmap <Space>gb :call BlameGenerate()<CR>
   nmap <Space>gt :call BlameTruncate()<CR>
   nmap <Space>gr :call BlameRemove()<CR>
 
-  function! OpenFileInGitLab()
-    let l = line(".")
-    let ln = escape("#L".l, "#")
-    execute "!open \"https://gitlab.com/steadystate/$(basename $(pwd))/-/blob/$(git rev-parse HEAD)/%".ln."\""
-  endfunction
-
   function! OpenFileInGitHub()
     let l = line(".")
     let ln = escape("#L".l, "#")
-    execute "!open \"https://github.com/hoverinc/$(basename $(pwd))/blob/$(git rev-parse HEAD)/%".ln."\""
+    execute "!open \"https://github.com/zendesk/$(basename $(pwd))/blob/$(git rev-parse HEAD)/%".ln."\""
   endfunction
 
   function! OpenCommitInGitHub()
     let l = getline(".")
     let sha = matchstr(l, '^[a-z0-9]\+')
-    execute "!open \"https://github.com/hoverinc/$(basename $(pwd))/commit/".sha."\""
+    execute "!open \"https://github.com/zendesk/$(basename $(pwd))/commit/".sha."\""
   endfunction
 
   function! BlameGenerate()
@@ -246,7 +243,7 @@
   " Setting MacVim background color to 'dark'
 "  set bg=dark
   " MacVim's 'dark' theme has a gray background, I prefer black
-"  autocmd VimEnter * :highlight Normal guibg=black
+  autocmd VimEnter * :highlight Normal guibg=black
 
   "Ctrl-C to Escape from insert model; new MacVim removed what was default mapping, ugh
   "imap <c-c> <Esc>

@@ -1,3 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
-let g:netrw_dirhist_1='/Users/hirokajino/Steady/webapp'
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/Users/hirokajino/Code/zendesk/zendesk'
+let g:netrw_dirhist_1='/Users/hirokajino/Code/zendesk/halon-account-service'
+let g:netrw_dirhist_0='/Users/hirokajino/Code/zendesk/halon-account-service/internal/grpc/account_service'
+let g:netrw_dirhist_9='/Users/hirokajino/Code/zendesk/halon-account-service/docker/halon-account-service'
+let g:netrw_dirhist_8='/Users/hirokajino/Code/zendesk/halon-account-service/docker'
+let g:netrw_dirhist_7='/Users/hirokajino/Code/zendesk/halon-account-service/internal/model'
+let g:netrw_dirhist_6='/Users/hirokajino/Code/zendesk/halon-account-service/vendor/github.com/zendesk/zendesk_protobuf_schemas/v6/protobuf/accounts'
+let g:netrw_dirhist_5='/Users/hirokajino/Code/zendesk/halon-account-service/internal/model'
+let g:netrw_dirhist_4='/Users/hirokajino/Code/zendesk/halon-account-service/vendor/github.com/zendesk/zendesk_protobuf_schemas/v6/protobuf/accounts'
+let g:netrw_dirhist_3='/Users/hirokajino/Code/zendesk/halon-account-service/internal/model'

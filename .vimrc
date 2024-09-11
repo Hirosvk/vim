@@ -4,6 +4,7 @@
   " Path to CtrlP pluglin
   set runtimepath^=~/.vim/bundle/ctrlp.vim
   set runtimepath^=~/.vim/bundle/vim-matchopen
+  set runtimepath^=~/.vim/after/ftplugin/vim-jsonnet
 
   " removed cpp and h form the default sequence
   let g:netrw_sort_sequence="[\/]$,\<core\%(\.\d\+\)\=\>,\.c$,\~\=\*$,*,\.o$,\.obj$,\.info$,\.swp$,\.bak$,\~$"
@@ -51,15 +52,15 @@
   vmap <Space>E :call GoUp()<CR>
 
   function! GoDown()
-    let spaces = matchstr(getline('.'), '^\s\+')
+    let &l:spaces = matchstr(getline('.'), '^\s\+')
     normal mX
-    execute '/^'.spaces.'\S'
+    execute '/^'.l:spaces.'\S'
   endfunction
 
   function! GoUp()
-    let spaces = matchstr(getline('.'), '^\s\+')
+    let &spaces = matchstr(getline('.'), '^\s\+')
     normal mX
-    execute '?^'.spaces.'\S'
+    execute '?^'.l:spaces.'\S'
   endfunction
 
   " Enabling textwrap with indent (supposed to be a new feature in later version of vim)
